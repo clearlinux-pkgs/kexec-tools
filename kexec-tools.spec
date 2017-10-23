@@ -4,7 +4,7 @@
 #
 Name     : kexec-tools
 Version  : 2.0.15
-Release  : 6
+Release  : 7
 URL      : https://www.kernel.org/pub/linux/utils/kernel/kexec/kexec-tools-2.0.15.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/kernel/kexec/kexec-tools-2.0.15.tar.xz
 Summary  : Load one kernel from another
