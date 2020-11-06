@@ -4,10 +4,10 @@
 #
 Name     : kexec-tools
 Version  : 2.0.20
-Release  : 14
+Release  : 15
 URL      : https://www.kernel.org/pub/linux/utils/kernel/kexec/kexec-tools-2.0.20.tar.xz
 Source0  : https://www.kernel.org/pub/linux/utils/kernel/kexec/kexec-tools-2.0.20.tar.xz
-Summary  : Load another kernel from the currently executing Linux kernel
+Summary  : Load one kernel from another
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: kexec-tools-bin = %{version}-%{release}
@@ -15,6 +15,7 @@ Requires: kexec-tools-license = %{version}-%{release}
 Requires: kexec-tools-man = %{version}-%{release}
 BuildRequires : pkgconfig(zlib)
 BuildRequires : xz-dev
+Patch1: 0001-kexec-tools-Remove-duplicated-variable-declarations.patch
 
 %description
 /sbin/kexec is a user space utility for loading another kernel
@@ -52,29 +53,31 @@ man components for the kexec-tools package.
 
 %prep
 %setup -q -n kexec-tools-2.0.20
+cd %{_builddir}/kexec-tools-2.0.20
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1564060492
+export SOURCE_DATE_EPOCH=1604705046
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1564060492
+export SOURCE_DATE_EPOCH=1604705046
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kexec-tools
-cp COPYING %{buildroot}/usr/share/package-licenses/kexec-tools/COPYING
+cp %{_builddir}/kexec-tools-2.0.20/COPYING %{buildroot}/usr/share/package-licenses/kexec-tools/c1f673dec6037696f751588854283118d7c38db3
 %make_install
 
 %files
@@ -88,7 +91,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/kexec-tools/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/kexec-tools/COPYING
+/usr/share/package-licenses/kexec-tools/c1f673dec6037696f751588854283118d7c38db3
 
 %files man
 %defattr(0644,root,root,0755)
