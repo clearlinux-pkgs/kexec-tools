@@ -1,10 +1,16 @@
 Configure miss: x86_64-clr-linux-gnu-gcc
 Configure miss: x86_64-clr-linux-gnu-gcc
+Configure miss: x86_64-clr-linux-gnu-gcc
+Configure miss: x86_64-clr-linux-gnu-gcc
+Configure miss: x86_64-clr-linux-gnu-ld
+Configure miss: x86_64-clr-linux-gnu-ld
 Configure miss: x86_64-clr-linux-gnu-ld
 Configure miss: x86_64-clr-linux-gnu-ld
 Configure miss: x86_64-generic-linux-gnu-as
+Configure miss: x86_64-generic-linux-gnu-as
+Configure miss: x86_64-generic-linux-gnu-ld
 Configure miss: x86_64-generic-linux-gnu-ld
 Configure miss: x86_64-generic-linux-gnu-objcopy
+Configure miss: x86_64-generic-linux-gnu-objcopy
 Configure miss: xenctrl.h
-Configure miss: xenctrl.h presence
-Configure miss: xenctrl.h usability
+Configure miss: xenctrl.h
